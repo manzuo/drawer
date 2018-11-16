@@ -1,0 +1,265 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .top {
+            /* 设置宽度高度背景颜色 */
+            height: auto;
+            width: 100%;
+            margin-left: 0;
+            background: rgb(189, 181, 181);
+            position: fixed;
+            /*固定在顶部*/
+            top: 0;
+            /*离顶部的距离为0*/
+            margin-bottom: 5px;
+        }
+
+        .top ul {
+            /* 清除ul标签的默认样式 */
+            width: auto;
+            list-style-type: none;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-left: 5%;
+            /* margin-top: 0;          */
+            padding: 0;
+
+        }
+
+        .top li {
+            float: left;
+            /* 使li内容横向浮动，即横向排列  */
+            margin-right: 2%;
+            /* 两个li之间的距离*/
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 3px;
+            overflow: hidden;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .top li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #111;
+        }
+
+        .top ul li ul {
+            /* 设置二级菜单 */
+            margin-left: -0.2px;
+            background: rgb(189, 181, 181);
+            position: relative;
+            display: none;
+            /* 默认隐藏二级菜单的内容 */
+        }
+
+        .top ul li ul li {
+            /* 二级菜单li内容的显示 */
+            float: none;
+            text-align: center;
+        }
+
+        .top ul li:hover ul {
+            /* 鼠标选中二级菜单内容时 */
+            display: block;
+        }
+
+        body {
+            background: #eff3f5;
+        }
+
+        .top2 {
+            height: auto;
+            width: 100%;
+            background: rgb(189, 181, 181);
+            overflow: hidden;
+            white-space: nowrap;
+            display: none;
+        }
+
+        .top2 a {
+            text-decoration: none;
+        }
+
+        .top2 img {
+            width: 20px;
+            height: 20px;
+            float: right;
+        }
+
+        .drawer {
+            height: auto;
+            width: 100%;
+            margin-left: 0;
+            background: rgb(189, 181, 181);
+            top: 0;
+            /*离顶部的距离为0*/
+            display: none;
+        }
+
+        .drawer ul {
+            /* 清除ul标签的默认样式 */
+            width: 100%;
+            list-style-type: none;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .drawer li {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drawer li a {
+            /* 设置链接内容显示的格式*/
+            display: block;
+            /* 把链接显示为块元素可使整个链接区域可点击 */
+            color: white;
+            text-align: center;
+            padding: 3px;
+            overflow: hidden;
+            text-decoration: none;
+            /* 去除下划线 */
+        }
+
+        .drawer li a:hover {
+            /* 鼠标选中时背景变为黑色 */
+            background-color: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+
+        <ul>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">
+                    <b>一级菜单</b>
+                </a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#contact">一级菜单</a>
+                <ul>
+                    <li>
+                        <a href="#contact">二级菜单</a>
+                    </li>
+                    <li>
+                        <a href="#contact">二级菜单</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="top2">
+        <img id="ico" src="https://img-blog.csdnimg.cn/20181116215350176.png" alt="">
+    </div>
+    <div class="drawer">
+        <ul>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+            <li>
+                <a href="#">
+                    <b>一级菜单</b>
+                </a>
+            </li>
+            <li>
+                <a href="#">一级菜单</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    function detectZoom() {
+        var ratio = 0,
+            screen = window.screen,
+            ua = navigator.userAgent.toLowerCase();
+        var top1class = document.getElementsByClassName("top");
+        var top1 = top1class[0];
+        var top2class = document.getElementsByClassName("top2");
+        var top2 = top2class[0];
+        var drawerclass = document.getElementsByClassName("drawer");
+        var drawer = drawerclass[0];
+        var oImg = document.getElementById('ico');
+        if (window.devicePixelRatio !== undefined) {
+            ratio = window.devicePixelRatio;
+        }
+        else if (~ua.indexOf('msie')) {
+            if (screen.deviceXDPI && screen.logicalXDPI) {
+                ratio = screen.deviceXDPI / screen.logicalXDPI;
+            }
+        }
+        else if (window.outerWidth !== undefined && window.innerWidth !== undefined) {
+            ratio = window.outerWidth / window.innerWidth;
+        }
+
+        if (ratio) {
+            ratio = Math.round(ratio * 100);
+        }
+        if (ratio >= 375) {
+            top1.style.display = 'none';
+            top2.style.display = 'block';
+
+        }
+        if (ratio < 375) {
+            drawer.style.display = 'none'
+            oImg.src = 'https://img-blog.csdnimg.cn/20181116215350176.png';
+            top2.style.display = 'none';
+            top1.style.display = 'block';
+        }
+    };
+    var t1 = setInterval("detectZoom();", 1000);
+
+    window.onload = function () {
+        var oImg = document.getElementById('ico');
+        var drawerclass = document.getElementsByClassName("drawer");
+        var drawer = drawerclass[0];
+        var onOff = true;  //此处相当于设置了一个开关，通过设置布尔值，进而通过改变布尔值来完成if的判断！
+        oImg.onclick = function () {
+            if (onOff) {
+                oImg.src = 'https://img-blog.csdnimg.cn/20181116215501345.png';
+                onOff = false;
+                drawer.style.display = 'block';
+
+            } else {
+                oImg.src = 'https://img-blog.csdnimg.cn/20181116215350176.png';
+                onOff = true;
+                drawer.style.display = 'none';
+            };
+        };
+    };
+</script>
+
+</html>
